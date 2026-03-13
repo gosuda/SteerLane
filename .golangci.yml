@@ -1,0 +1,143 @@
+version: "2"
+
+run:
+  tests: true
+  go: "1.25"
+
+formatters:
+  enable:
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/gosuda
+        - gosuda.org
+
+linters:
+  default: standard
+
+  enable:
+    # --- Tier 1: Bugs & Correctness ---
+    - govet
+    - errcheck
+    - staticcheck
+    - unused
+    - gosec
+    - errorlint
+    - copyloopvar
+    - nilerr
+    - bodyclose
+    - sqlclosecheck
+    - rowserrcheck
+    - durationcheck
+    - makezero
+    - noctx
+
+    # --- Tier 2: Code Quality & Style ---
+    - gocritic
+    - unconvert
+    - unparam
+    - wastedassign
+    - misspell
+    - whitespace
+    - godot
+    - goconst
+    - dupword
+    - usestdlibvars
+    - testifylint
+    - testableexamples
+    - tparallel
+    - usetesting
+
+    # --- Tier 3: Concurrency & Safety ---
+    - gochecknoglobals
+    - gochecknoinits
+    - containedctx
+
+    # --- Tier 4: Performance & Modernization ---
+    - prealloc
+    - intrange
+    - modernize
+    - fatcontext
+    - perfsprint
+    - reassign
+    - spancheck
+    - mirror
+    - recvcheck
+
+  exclusions:
+    rules:
+      - linters:
+          - errcheck
+        source: "^\\s*defer\\s+"
+      - path: "_test\\.go"
+        linters:
+          - bodyclose
+          - errcheck
+          - gosec
+          - noctx
+          - wrapcheck
+          - goconst
+          - funlen
+          - dupl
+          - gochecknoglobals
+
+  settings:
+    # errcheck:
+    #   check-blank: false
+    #   check-type-assertions: false
+    #   exclude-functions:
+    #     - fmt.Printf
+    #     - fmt.Println
+    #     - fmt.Print
+    #     - fmt.Fprintf
+    #     - fmt.Fprint
+    #     - fmt.Fprintln
+    #     - fmt.Sprintf
+    #     - os.Unsetenv
+    #     - encoding/json.Marshal
+    #     - encoding/json.Unmarshal
+    #     - encoding/json.NewEncoder
+    #     - encoding/json.NewDecoder
+    #     - strings.Builder.WriteString
+    #     - strings.Builder.Write
+    #     - bytes.Buffer.Write
+    #     - bytes.Buffer.WriteString
+    #     - io.Copy
+    #     - log.Printf
+    #     - log.Println
+    #     - log.Print
+    #     - time.Now
+    #     - time.Sleep
+
+    gocritic:
+      enabled-tags:
+        - diagnostic
+        - style
+        - performance
+        - opinionated
+      disabled-checks:
+        - hugeParam
+        - rangeValCopy
+
+    govet:
+      enable-all: true
+      settings:
+        shadow:
+          strict: true
+
+    perfsprint:
+      strconcat: true
+
+    fatcontext:
+      check-struct-pointers: true
+
+    spancheck:
+      checks:
+        - end
+        - record-error
+        - set-status
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0

@@ -1,0 +1,1 @@
+import{v as y,w as u,ae as _,af as o,x as t,F as g,a1 as i,D as l,y as d,E as p,z as v}from"./DatV0h-i.js";function F(n,r){let a=null,E=t;var s;if(t){a=p;for(var e=v(document.head);e!==null&&(e.nodeType!==g||e.data!==n);)e=i(e);if(e===null)l(!1);else{var f=i(e);e.remove(),d(f)}}t||(s=document.head.appendChild(y()));try{u(()=>r(s),_|o)}finally{E&&(l(!0),d(a))}}export{F as h};
