@@ -1,4 +1,6 @@
-# Steerlane
+# SteerLane
+
+## One board. Humans and agents. No context lost.
 
 Kanban-driven agent orchestration for developers.
 
